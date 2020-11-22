@@ -2,8 +2,11 @@ body{
    
 }
 .primary-background{
-    background: #00b3a4;
+background: linear-gradient(59deg, rgba(85,51,190,0.5357493339132529) 39%, rgba(169,169,255,1) 53%);
 }
 .banner-background{
                 clip-path: polygon(30% 0%, 70% 0%, 100% 0, 100% 91%, 63% 100%, 22% 91%, 0 99%, 0 0);
             }
+            
+            
+       
