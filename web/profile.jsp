@@ -47,7 +47,7 @@
         <!--navbar--> 
 
         <nav class="navbar navbar-expand-lg navbar-dark primary-background">
-            <a class="navbar-brand" href="index.jsp"> <span class="fa fa-asterisk"></span>   Tech Blog</a>
+            <a class="navbar-brand" href="index.jsp"> Jblogs</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -55,7 +55,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#"> <span class="	fa fa-bell-o"></span> LearnCode with Durgesh <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#"> Welcome <%= user.getName()%> <span class="sr-only">(current)</span></a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -65,17 +65,15 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">Programming Language</a>
                             <a class="dropdown-item" href="#">Project Implementation</a>
-                            <div class="dropdown-divider"></div>
+                          
                             <a class="dropdown-item" href="#">Data Structure</a>
                         </div>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"> <span class="	fa fa-address-card-o"></span> Contact</a>
-                    </li>
+                   
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#add-post-modal" > <span class="	fa fa-asterisk"></span> Do Post</a>
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#add-post-modal" >  New Post</a>
                     </li>
 
 
@@ -84,11 +82,11 @@
 
                 <ul class="navbar-nav mr-right">
                     <li class="nav-item">
-                        <a class="nav-link" href="#!" data-toggle="modal" data-target="#profile-modal"> <span class="fa fa-user-circle "></span> <%= user.getName()%> </a>
+                        <a class="nav-link" href="#!" data-toggle="modal" data-target="#profile-modal"> My profile </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="LogoutServlet"> <span class="fa fa-user-plus "></span> Logout</a>
+                        <a class="nav-link" href="LogoutServlet">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -142,17 +140,7 @@
                     </div>
 
                     <!--second col-->
-                    <div class="col-md-8" >
-                        <!--posts-->
-                        <div class="container text-center" id="loader">
-                            <i class="fa fa-refresh fa-4x fa-spin"></i>
-                            <h3 class="mt-2">Loading...</h3>
-                        </div>
-
-                        <div class="container-fluid" id="post-container">
-
-                        </div>
-                    </div>
+                    
 
                 </div>
 
@@ -283,6 +271,80 @@
 
 
         <!--end of profile modal-->
+
+        <!--add post modal-->
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="add-post-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Provide the post details..</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form id="add-post-form" action="AddPostServlet" method="post">
+
+                            <div class="form-group">
+                                <select class="form-control" name="cid">
+                                    <option selected disabled>---Select Category---</option>
+
+                                    <%
+                                        PostDao postd = new PostDao(ConnectionProvider.getConnection());
+                                        ArrayList<Category> list = postd.getAllCategories();
+                                        for (Category c : list) {
+                                    %>
+                                    <option value="<%= c.getCid()%>"><%= c.getName()%></option>
+
+                                    <%
+                                        }
+                                    %>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <input name="pTitle" type="text" placeholder="Enter post Title" class="form-control"/>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea name="pContent" class="form-control" style="height: 200px;" placeholder="Enter your content"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="pCode" class="form-control" style="height: 200px;" placeholder="Enter your program (if any)"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Select your pic..</label>
+                                <br>
+                                <input type="file" name="pic"  >
+                            </div>
+
+                            <div class="container text-center">
+                                <button type="submit" class="btn btn-outline-primary">Post </button>
+                            </div>
+
+                        </form>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!--END add post modal-->
+
+
+
+
+
+
+
         <!--javascripts-->
         <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"

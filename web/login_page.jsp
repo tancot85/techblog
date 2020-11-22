@@ -30,9 +30,9 @@
 
                         <div class="card">
                             <div class="card-header primary-background text-white text-center">
-                                <span class="fa fa-user-plus fa-3x"></span>
+                                
                                 <br>
-                                <p>Login here</p>
+                                <h3>Login here</h3>
                             </div>
 
                             <%
@@ -56,8 +56,7 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email address</label>
                                         <input name="email" required type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                                    </div>
+                                        </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Password</label>
                                         <input name="password" required type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
