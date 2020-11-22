@@ -59,7 +59,7 @@
                                     <label for="gender">Select Gender</label>
                                     <br>
                                     <input type="radio"  id="gender" name="gender" value="male" >Male
-                                    <input type="radio"  id="gender" name="gender" value="famale">Female
+                                    <input type="radio"  id="gender" name="gender" value="female">Female
                                 </div>
 
                                 <div class="form-group">
@@ -96,6 +96,7 @@
             </div>
 
         </main>
+
 
 
         <!--javascripts-->
@@ -146,7 +147,6 @@
                 });
             });
         </script>
-
 
     </body>
 </html>
