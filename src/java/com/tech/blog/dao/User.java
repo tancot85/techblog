@@ -1,39 +1,40 @@
-
 package com.tech.blog.entities;
 
 import java.sql.*;
-public class user {
+
+public class User {
+
     private int id;
-    private String email;
     private String name;
+    private String email;
     private String password;
     private String gender;
     private Timestamp dateTime;
     private String about;
+    private String profile;
 
-    public user(int id, String email, String name, String password, String gender, Timestamp dateTime, String about) {
+    public User(int id, String name, String email, String password, String gender, Timestamp dateTime, String about) {
         this.id = id;
-        this.email = email;
         this.name = name;
+        this.email = email;
         this.password = password;
         this.gender = gender;
         this.dateTime = dateTime;
         this.about = about;
     }
 
-    public user() {
+    public User() {
     }
 
-    public user(String email, String name, String password, String gender, Timestamp dateTime, String about) {
-        this.email = email;
+    public User(String name, String email, String password, String gender,  String about) {
         this.name = name;
+        this.email = email;
         this.password = password;
-        this.gender = gender;
-        this.dateTime = dateTime;
+        this.gender = gender;       
         this.about = about;
     }
     
-    // getters and setters
+//    getters and setters
 
     public int getId() {
         return id;
@@ -43,20 +44,20 @@ public class user {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -90,6 +91,17 @@ public class user {
     public void setAbout(String about) {
         this.about = about;
     }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
     
     
+    
+    
+
 }
