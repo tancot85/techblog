@@ -4,10 +4,11 @@
     Author     : tanma
 --%>
 
-<%@page import="com.tech.blog.helper.ConnectionProvider"%>
-<%@page import="com.sun.jdi.connect.spi.Connection"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
+<%@page import="com.tech.blog.helper.ConnectionProvider"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,6 +29,11 @@
         <!-- navbar -->
             
         <%@include file = "normal_navbar.jsp" %>
+        <%
+            Connection con= ConnectionProvider.getConnection();
+        %>
+        <h1> <%= con %></h1>
+        
         
         <!-- banner --->
         <div class="container-fluid p-0 m-0">
