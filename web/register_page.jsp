@@ -109,7 +109,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
         <script>
             $(document).ready(function () {
-                console.log("loaded........")
+                console.log("loaded........");
                 $('#reg-form').on('submit', function (event) {
                     event.preventDefault();
                     let form = new FormData(this);
@@ -121,14 +121,14 @@
                         type: 'POST',
                         data: form,
                         success: function (data, textStatus, jqXHR) {
-                            console.log(data)
+                            console.log(data);
                             $("#sumbimt-btn").show();
                             $("#loader").hide();
                             if (data.trim() === 'done')
                             {
                                 swal("Registered successfully..We are going to redirect to login page")
                                         .then((value) => {
-                                            window.location = "login_page.jsp"
+                                            window.location = "login_page.jsp";
                                         });
                             } else
                             {
