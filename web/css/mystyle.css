@@ -1,6 +1,9 @@
 body{
-   
+   background: #00b3a4;
 }
 .primary-background{
-    background:#3d5afe!important;
+    background: #00b3a4;
 }
+.banner-background{
+                clip-path: polygon(30% 0%, 70% 0%, 100% 0, 100% 91%, 63% 100%, 22% 91%, 0 99%, 0 0);
+            }
