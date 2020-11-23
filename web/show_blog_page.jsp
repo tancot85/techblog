@@ -1,16 +1,21 @@
 <%-- 
-    Document   : profile
-    Created on : 22-Nov-2020, 8:36:37 pm
+    Document   : show_blog_page
+    Created on : 23-Nov-2020, 11:13:35 am
     Author     : Vidhi
 --%>
 
-<%@page import="com.tech.blog.entities.Category"%>
+<%@page import="com.tech.blog.dao.LikeDao"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="com.tech.blog.dao.UserDao"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="com.tech.blog.entities.Category"%>
+<%@page import="com.tech.blog.entities.Category"%>
 <%@page import="com.tech.blog.helper.ConnectionProvider"%>
 <%@page import="com.tech.blog.dao.PostDao"%>
-<%@page import="com.tech.blog.entities.Message"%>
+<%@page import="com.tech.blog.entities.Post"%>
 <%@page import="com.tech.blog.entities.User"%>
-<%@page errorPage="error_page.jsp" %>
+<%@page  errorPage="error_page.jsp" %>
+
 <%
     User user = (User) session.getAttribute("currentUser");
     if (user == null) {
@@ -18,15 +23,18 @@
     }
 %>
 
+<%    int postId = Integer.parseInt(request.getParameter("post_id"));
+    PostDao d = new PostDao(ConnectionProvider.getConnection());
+    Post p = d.getPostByPostId(postId);
+%>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-
-
-
+        <title><%= p.getpTitle()%> || TechBlog by Learn Code with Durgesh </title>
 
         <!--css-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -36,6 +44,25 @@
             .banner-background{
                 clip-path: polygon(30% 0%, 70% 0%, 100% 0, 100% 91%, 63% 100%, 22% 91%, 0 99%, 0 0);
             }
+            .post-title{
+                font-weight: 100;
+                font-size: 30px;
+            }
+            .post-content{
+                font-weight: 100;
+                font-size: 25px;
+            }
+            .post-date{
+                font-style: italic;
+                font-weight: bold;
+            }
+            .post-user-info{
+                font-size: 20px;
+            }
+            .row-user{
+                border:1px solid #e2e2e2;
+                padding-top: 15px;
+            }
             body{
                 background:url(img/bg.jpeg);
                 background-size: cover;
@@ -44,10 +71,12 @@
         </style>
     </head>
     <body>
+
+
         <!--navbar--> 
 
         <nav class="navbar navbar-expand-lg navbar-dark primary-background">
-            <a class="navbar-brand" href="index.jsp"> Jblogs</a>
+            <a class="navbar-brand" href="index.jsp"> <span class="fa fa-asterisk"></span>   Tech Blog</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -55,15 +84,27 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#"> Welcome <%= user.getName()%> <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="profile.jsp"> <span class="	fa fa-bell-o"></span> LearnCode with Durgesh <span class="sr-only">(current)</span></a>
                     </li>
 
-                    
-
-                   
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="	fa fa-check-square-o"></span> Categories
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Programming Language</a>
+                            <a class="dropdown-item" href="#">Project Implementation</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Data Structure</a>
+                        </div>
+                    </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#add-post-modal" >  New Post</a>
+                        <a class="nav-link" href="#"> <span class="	fa fa-address-card-o"></span> Contact</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#add-post-modal" > <span class="	fa fa-asterisk"></span> Do Post</a>
                     </li>
 
 
@@ -72,11 +113,11 @@
 
                 <ul class="navbar-nav mr-right">
                     <li class="nav-item">
-                        <a class="nav-link" href="#!" data-toggle="modal" data-target="#profile-modal"> My profile </a>
+                        <a class="nav-link" href="#!" data-toggle="modal" data-target="#profile-modal"> <span class="fa fa-user-circle "></span> <%= user.getName()%> </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="LogoutServlet">Logout</a>
+                        <a class="nav-link" href="LogoutServlet"> <span class="fa fa-user-plus "></span> Logout</a>
                     </li>
                 </ul>
             </div>
@@ -86,62 +127,81 @@
 
         <!--end of navbar-->
 
-
-        <%
-            Message m = (Message) session.getAttribute("msg");
-            if (m != null) {
-        %>
-        <div class="alert <%= m.getCssClass()%>" role="alert">
-            <%= m.getContent()%>
-        </div> 
+        <!--main content of body-->
 
 
-        <%
-                session.removeAttribute("msg");
-            }
-        %>
+        <div class="container">
+
+            <div class="row my-4">
+
+                <div class="col-md-8 offset-md-2">
 
 
-        <!--main body of the page-->
+                    <div class="card">
 
-        <main>
-            <div class="container">
-                <div class="row mt-4">
-                    <!--first col-->
-                    <div class="col-md-4">
-                        <!--categories-->
-                        <div class="list-group">
-                            <a href="#" onclick="getPosts(0, this)"  class=" c-link list-group-item list-group-item-action active">
-                                All Posts
-                            </a>
-                            <!--categories-->
+                        <div class="card-header primary-background text-white">
 
-                            <%                                PostDao d = new PostDao(ConnectionProvider.getConnection());
-                                ArrayList<Category> list1 = d.getAllCategories();
-                                for (Category cc : list1) {
-                            %>
-                            <a href="#" onclick="getPosts(<%= cc.getCid()%>, this)" class=" c-link list-group-item list-group-item-action"><%= cc.getName()%></a>
+                            <h4 class="post-title"><%= p.getpTitle()%></h4>
 
 
-                            <%                                        }
-                            %>
                         </div>
+
+                        <div class="card-body">
+
+                            <img class="card-img-top my-2" src="blog_pics/<%= p.getpPic()%>" alt="Card image cap">
+
+
+                            <div class="row my-3 row-user">
+                                <div class="col-md-8">
+                                    <% UserDao ud = new UserDao(ConnectionProvider.getConnection());%>
+
+                                    <p class="post-user-info"> <a href="#!"> <%= ud.getUserByUserId(p.getUserId()).getName()%></a> has posted : </p>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <p class="post-date"> <%=  DateFormat.getDateTimeInstance().format(p.getpDate())%>  </p>
+                                </div>
+                            </div>
+
+
+                            <p class="post-content"><%= p.getpContent()%></p> 
+
+                            <br>
+                            <br>
+
+                            <div class="post-code">
+                                <pre><%= p.getpCode()%></pre>
+                            </div>
+
+                        </div>
+                        <div class="card-footer primary-background">
+
+
+                            <%
+                                LikeDao ld = new LikeDao(ConnectionProvider.getConnection());
+                            %>
+
+                            <a href="#!" onclick="doLike(<%= p.getPid()%>,<%= user.getId()%>)" class="btn btn-outline-light btn-sm"> <i class="fa fa-thumbs-o-up"></i> <span class="like-counter"><%= ld.countLikeOnPost(p.getPid())%></span>  </a>
+                            <a href="#!" class="btn btn-outline-light btn-sm"> <i class="fa fa-commenting-o"></i> <span>20</span>  </a>
+
+
+
+                        </div>
+
+
 
                     </div>
 
-                    <!--second col-->
-                    
 
                 </div>
 
             </div>
 
-        </main>
+        </div>
 
 
-        <!--end main body of the page-->
 
-
+        <!--end of main content  of body-->
 
 
         <!--profile modal-->
@@ -399,30 +459,6 @@
                         contentType: false
                     })
                 })
-            })
-        </script>
-
-        <!--loading post using ajax-->
-        <script>
-            function getPosts(catId, temp) {
-                $("#loader").show();
-                $("#post-container").hide()
-                $(".c-link").removeClass('active')
-                $.ajax({
-                    url: "load_posts.jsp",
-                    data: {cid: catId},
-                    success: function (data, textStatus, jqXHR) {
-                        console.log(data);
-                        $("#loader").hide();
-                        $("#post-container").show();
-                        $('#post-container').html(data)
-                        $(temp).addClass('active')
-                    }
-                })
-            }
-            $(document).ready(function (e) {
-                let allPostRef = $('.c-link')[0]
-                getPosts(0, allPostRef)
             })
         </script>
 
