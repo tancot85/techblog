@@ -8,7 +8,13 @@
         <ul class="navbar-nav mr-auto">
             
 
-            
+            <li>
+                
+                 <a class="navbar-brand" href="#">
+                       <img src="https://i.pinimg.com/474x/92/db/5b/92db5bb4f929fd6777c2a449b63a5e3a.jpg" width="30" height="30" alt="">
+                 </a>
+
+            </li>
             
             <li class="nav-item">
                 <a class="nav-link " href="login_page.jsp">  Login</a>
