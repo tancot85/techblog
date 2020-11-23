@@ -1,11 +1,11 @@
 function doLike(pid, uid)
 {
-    console.log(pid + "," + uid);
+    console.log(pid + "," + uid)
     const d = {
         uid: uid,
         pid: pid,
         operation: 'like'
-    };
+    }
 
     $.ajax({
         url: "LikeServlet",
@@ -20,7 +20,7 @@ function doLike(pid, uid)
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            console.log(data);
+            console.log(data)
         }
-    });
+    })
 }

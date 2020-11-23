@@ -1,15 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-/**
- *
- * @author Vidhi
- */
-
 package com.tech.blog.dao;
 
 import com.tech.blog.entities.Category;

@@ -37,7 +37,7 @@
                 clip-path: polygon(30% 0%, 70% 0%, 100% 0, 100% 91%, 63% 100%, 22% 91%, 0 99%, 0 0);
             }
             body{
-                background:url(img/bg.jpeg);
+                background:url(blog_pics/bg2.png);
                 background-size: cover;
                 background-attachment: fixed;
             }
