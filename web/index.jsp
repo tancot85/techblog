@@ -68,7 +68,7 @@
                     <div class="card" >
 
                         <div class="card-body br-2">
-                            <h5 class="card-title">Dumm blog 1</h5>
+                            <h5 class="card-title">Dummy blog 1</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             <a href="#" class="btn primary-background text-white">Read more</a>
                         </div>
