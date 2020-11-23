@@ -8,18 +8,7 @@
         <ul class="navbar-nav mr-auto">
             
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="	fa fa-check-square-o"></span> Categories
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">    
-                    <a class="dropdown-item" href="#">Programming Language</a>
-                    <a class="dropdown-item" href="#">Project Implementation</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Data Structure</a>
-                </div>
-            </li>
-
+            
             
             <li class="nav-item">
                 <a class="nav-link " href="login_page.jsp">  Login</a>

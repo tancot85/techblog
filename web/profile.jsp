@@ -201,7 +201,7 @@
                             <!--profile edit-->
 
                             <div id="profile-edit" style="display: none;">
-                                <h3 class="mt-2">Please Edit Carefully</h3>
+                                <h3 class="mt-2">Edit</h3>
                                 <form action="EditServlet" method="post" enctype="multipart/form-data">
                                     <table class="table">
                                         <tr>
