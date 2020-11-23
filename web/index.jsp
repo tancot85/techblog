@@ -38,7 +38,12 @@
                     <h3 class="display-3">Welcome to JBLOGS </h3>
 
                     <p>
-                        Your one stop destination to store all your blogs and read blogs of other writers!!</p>
+                        Your one stop destination to store all your blogs and read blogs of other writers!!
+                    </p>
+                     <p>
+                        Create an account for FREE!!!
+                    </p>
+                     
                     
                     
                 </div>
@@ -63,7 +68,7 @@
                     <div class="card" >
 
                         <div class="card-body br-2">
-                            <h5 class="card-title">Java Programming</h5>
+                            <h5 class="card-title">Dumm blog 1</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             <a href="#" class="btn primary-background text-white">Read more</a>
                         </div>
@@ -73,7 +78,7 @@
                     <div class="card" >
 
                         <div class="card-body">
-                            <h5 class="card-title">Java Programming</h5>
+                            <h5 class="card-title">Dummy blog 2</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             <a href="#" class="btn primary-background text-white">Read more</a>
                         </div>
@@ -83,7 +88,7 @@
                     <div class="card" >
 
                         <div class="card-body">
-                            <h5 class="card-title">Java Programming</h5>
+                            <h5 class="card-title">Dummy blog 3</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             <a href="#" class="btn primary-background text-white">Read more</a>
                         </div>
