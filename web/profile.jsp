@@ -130,6 +130,18 @@
                     </div>
 
                     <!--second col-->
+                    <div class="col-md-8" >
+                        <!--posts-->
+                        <div class="container text-center" id="loader">
+                            <i class="fa fa-refresh fa-4x fa-spin"></i>
+                            <h3 class="mt-2">Loading...</h3>
+                        </div>
+
+                        <div class="container-fluid" id="post-container">
+
+                        </div>
+                    </div>
+
                     
 
                 </div>
